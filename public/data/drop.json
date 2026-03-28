@@ -1,0 +1,67 @@
+{
+  "brandName": "Usa2 Merch",
+  "tagline": "Ropa de marca USA · Usada como nueva · Urabá, Antioquia 🇺🇸",
+  "whatsappGroup": "https://chat.whatsapp.com/FQ8LpYS8vGaLeRibdwlTUX?mode=gi_t",
+  "ciudadRecogida": "Urabá, Antioquia",
+  "nextDrop": {
+    "fecha": "2026-03-27",
+    "dia": "jueves",
+    "hora": 12,
+    "piezas": 25
+  },
+  "pastDrop": {
+    "piezas": 6,
+    "agotadoEn": "2 horas"
+  },
+  "communitySize": 847,
+  "preview": [
+    {
+      "imagen": "/prendas/prenda-1.jpg",
+      "marca": "Nike",
+      "nombre": "Leggings Dri-FIT",
+      "precio": 35000,
+      "color": "Negro",
+      "talla": "M"
+    },
+    {
+      "imagen": "/prendas/prenda-2.jpg",
+      "marca": "Nike",
+      "nombre": "Sports Bra Swoosh",
+      "precio": 35000,
+      "color": "Rosa viejo",
+      "talla": "M"
+    },
+    {
+      "imagen": "/prendas/prenda-3.jpg",
+      "marca": "Nike",
+      "nombre": "Sports Bra Swoosh",
+      "precio": 35000,
+      "color": "Negro",
+      "talla": "M"
+    },
+    {
+      "imagen": "/prendas/prenda-4.jpg",
+      "marca": "Nike",
+      "nombre": "Sports Bra Swoosh Mesh",
+      "precio": 35000,
+      "color": "Negro",
+      "talla": "S"
+    },
+    {
+      "imagen": "/prendas/prenda-5.jpg",
+      "marca": "Nike",
+      "nombre": "Sports Bra Swoosh",
+      "precio": 35000,
+      "color": "Tie-dye",
+      "talla": "M"
+    },
+    {
+      "imagen": "/prendas/prenda-6.jpg",
+      "marca": "Nike",
+      "nombre": "Sports Bra Swoosh Mesh",
+      "precio": 35000,
+      "color": "Gris",
+      "talla": "S/M"
+    }
+  ]
+}

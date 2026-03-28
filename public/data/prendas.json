@@ -1,0 +1,197 @@
+{
+  "config": {
+    "brandName": "Usa2 Merch",
+    "tagline": "Moda circular que se siente bien por fuera y por dentro",
+    "whatsappGroup": "https://chat.whatsapp.com/TU_GRUPO_AQUI",
+    "whatsappNumber": "573152860174",
+    "ciudadRecogida": "Urabá, Antioquia",
+    "dropDays": [
+      "jueves",
+      "domingo"
+    ],
+    "dropHour": 12
+  },
+  "drops": [
+    {
+      "id": "drop-2026-03-27",
+      "fecha": "2026-03-27",
+      "dia": "jueves",
+      "estado": "proximo",
+      "prendas": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    },
+    {
+      "id": "drop-2026-03-23",
+      "fecha": "2026-03-23",
+      "dia": "domingo",
+      "estado": "pasado",
+      "agotadoEn": "2 horas",
+      "prendas": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ]
+    }
+  ],
+  "prendas": [
+    {
+      "id": "1",
+      "imagen": "https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&h=800&fit=crop",
+      "nombre": "Vestido azul midi",
+      "marca": "Zara",
+      "precio": 35000,
+      "precioOriginal": 120000,
+      "talla": "M",
+      "estado": "como-nuevo",
+      "disponible": true,
+      "dropId": "drop-2026-03-27",
+      "medidas": {
+        "largo": "95cm",
+        "busto": "88cm",
+        "cintura": "72cm"
+      },
+      "equivalencia": "M/Zara · 38/H&M · 10/Shein",
+      "descripcionEstado": "Usado 1 vez. Sin manchas. Como de tienda.",
+      "destacada": false
+    },
+    {
+      "id": "2",
+      "imagen": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=800&fit=crop",
+      "nombre": "Chaqueta denim oversize",
+      "marca": "Levi's",
+      "precio": 45000,
+      "precioOriginal": 180000,
+      "talla": "S",
+      "estado": "buen-estado",
+      "disponible": true,
+      "dropId": "drop-2026-03-27",
+      "medidas": {
+        "largo": "62cm",
+        "busto": "96cm",
+        "hombros": "44cm",
+        "mangas": "60cm"
+      },
+      "equivalencia": "S/Levi's · 36/Zara",
+      "destacada": false
+    },
+    {
+      "id": "3",
+      "imagen": "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600&h=800&fit=crop",
+      "nombre": "Jeans mom high waist",
+      "marca": "H&M",
+      "precio": 28000,
+      "precioOriginal": 95000,
+      "talla": "M",
+      "estado": "como-nuevo",
+      "disponible": true,
+      "dropId": "drop-2026-03-27",
+      "medidas": {
+        "largo": "100cm",
+        "cintura": "74cm",
+        "cadera": "98cm"
+      },
+      "equivalencia": "M/H&M · 28/Levi's",
+      "destacada": false
+    },
+    {
+      "id": "4",
+      "imagen": "https://images.unsplash.com/photo-1485968579169-a6b3e555ed44?w=600&h=800&fit=crop",
+      "nombre": "Blusa floral verano",
+      "marca": "Mango",
+      "precio": 18000,
+      "precioOriginal": 65000,
+      "talla": "S",
+      "estado": "nuevo-etiqueta",
+      "disponible": true,
+      "dropId": "drop-2026-03-27",
+      "medidas": {
+        "largo": "58cm",
+        "busto": "84cm"
+      },
+      "equivalencia": "S/Mango · XS/Zara",
+      "destacada": false
+    },
+    {
+      "id": "5",
+      "imagen": "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&h=800&fit=crop",
+      "nombre": "Crop top negro básico",
+      "precio": 15000,
+      "precioOriginal": 45000,
+      "talla": "XS",
+      "estado": "como-nuevo",
+      "disponible": false,
+      "dropId": "drop-2026-03-23",
+      "medidas": {
+        "largo": "42cm",
+        "busto": "80cm"
+      },
+      "equivalencia": "XS universal",
+      "destacada": false
+    },
+    {
+      "id": "6",
+      "imagen": "https://images.unsplash.com/photo-1583496661160-fb5886a0aaaa?w=600&h=800&fit=crop",
+      "nombre": "Falda plisada beige",
+      "marca": "Bershka",
+      "precio": 22000,
+      "precioOriginal": 78000,
+      "talla": "L",
+      "estado": "buen-estado",
+      "disponible": false,
+      "dropId": "drop-2026-03-23",
+      "medidas": {
+        "largo": "75cm",
+        "cintura": "80cm",
+        "cadera": "100cm"
+      },
+      "equivalencia": "L/Bershka · 42/Zara",
+      "destacada": false
+    },
+    {
+      "id": "7",
+      "imagen": "https://images.unsplash.com/photo-1434389677669-e08b4cda3a53?w=600&h=800&fit=crop",
+      "nombre": "Camisa lino blanca",
+      "marca": "COS",
+      "precio": 25000,
+      "precioOriginal": 85000,
+      "talla": "M",
+      "estado": "nuevo-etiqueta",
+      "disponible": false,
+      "dropId": "drop-2026-03-23",
+      "medidas": {
+        "largo": "68cm",
+        "busto": "92cm",
+        "hombros": "40cm",
+        "mangas": "62cm"
+      },
+      "equivalencia": "M/COS · M/C&A",
+      "destacada": false
+    },
+    {
+      "id": "8",
+      "imagen": "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&h=800&fit=crop",
+      "nombre": "Blazer negro estructurado",
+      "marca": "Stradivarius",
+      "precio": 55000,
+      "precioOriginal": 220000,
+      "talla": "S",
+      "estado": "como-nuevo",
+      "disponible": false,
+      "dropId": "drop-2026-03-23",
+      "medidas": {
+        "largo": "65cm",
+        "busto": "88cm",
+        "hombros": "38cm",
+        "mangas": "58cm"
+      },
+      "equivalencia": "S/Stradivarius · 36/Zara",
+      "descripcionEstado": "Usado 3 veces. Impecable.",
+      "destacada": false
+    }
+  ]
+}
