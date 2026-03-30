@@ -13,7 +13,7 @@ import { useState, useEffect } from "react";
 export default function FashionSimple() {
   const [config, setConfig] = useState({
     brandName: "Usa2 Merch",
-    tagline: "Ropa de marca USA · Usada como nueva · Urabá, Antioquia 🇺🇸",
+    tagline: "Ropa de marca USA · Usada como nueva · Urabá, Antioquia",
     whatsappGroup: "https://chat.whatsapp.com/TU_GRUPO_AQUI",
     ciudadRecogida: "Urabá, Antioquia",
     nextDrop: { fecha: "2026-03-27", dia: "jueves", hora: 12, piezas: 8 },
@@ -122,10 +122,10 @@ export default function FashionSimple() {
           <div className="overflow-hidden py-3 mb-8 border-y border-border/30 bg-muted/20">
             <div className="flex animate-marquee whitespace-nowrap uppercase tracking-[0.2em] font-medium font-sans">
               {[
-                "🇺🇸 Ropa importada de USA", "🧼 Lavadito y listo ✓", "📍 Recogida gratis Urabá", "💳 Nequi + Bancolombia",
-                "📏 Medidas exactas", "🌿 Moda sostenible", `🔥 Drops ${config.nextDrop.dia}s`,
-                "🇺🇸 Ropa importada de USA", "🧼 Lavadito y listo ✓", "📍 Recogida gratis Urabá", "💳 Nequi + Bancolombia",
-                "📏 Medidas exactas", "🌿 Moda sostenible", `🔥 Drops ${config.nextDrop.dia}s`,
+                "Ropa de marca USA", "🧼 Lavadito y listo ✓", "📍 Recogida gratis Urabá", "💳 Nequi + Bancolombia",
+                "📏 Medidas exactas", "🌿 Moda circular", `🔥 Drops ${config.nextDrop.dia}s`,
+                "Ropa de marca USA", "🧼 Lavadito y listo ✓", "📍 Recogida gratis Urabá", "💳 Nequi + Bancolombia",
+                "📏 Medidas exactas", "🌿 Moda circular", `🔥 Drops ${config.nextDrop.dia}s`,
               ].map((item, i) => (
                 <motion.span 
                   key={i} 
@@ -170,13 +170,8 @@ export default function FashionSimple() {
                       transition={{ duration: 0.5 }}
                     />
                     <div className="absolute top-2 left-2">
-                      <span className="px-1.5 py-0.5 rounded-md text-[9px] font-bold bg-white/80 text-black shadow-sm">
-                        🇺🇸 Made in USA
-                      </span>
-                    </div>
-                    <div className="absolute top-2 right-2">
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/20 text-white backdrop-blur-md border border-white/10 shadow-sm">
-                        🇺🇸 De USA
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/90 text-black shadow-sm">
+                        {item.marca || "Importada"}
                       </span>
                     </div>
                     <div className="absolute bottom-2 right-2 flex flex-col items-end gap-1">
