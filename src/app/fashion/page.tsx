@@ -176,16 +176,12 @@ export default function FashionSimple() {
                     </div>
                     <div className="absolute top-2 right-2">
                       <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/20 text-white backdrop-blur-md border border-white/10 shadow-sm">
-                        NUEVO
+                        🇺🇸 De USA
                       </span>
                     </div>
                     <div className="absolute bottom-2 right-2 flex flex-col items-end gap-1">
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-accent text-accent-foreground shadow-sm">
-                        -{(Math.random() * (70 - 40) + 40).toFixed(0)}%
-                      </span>
                       <div className="flex items-center gap-1.5 px-2 py-1 rounded-lg bg-black/60 text-white backdrop-blur-md border border-white/10 shadow-sm">
-                        <span className="text-[10px] text-white/60 line-through">${(item.precio * 2.5).toLocaleString()}</span>
-                        <span className="text-xs font-bold">${item.precio.toLocaleString()}</span>
+                        <span className="text-xs font-bold">${item.precio.toLocaleString()} COP</span>
                       </div>
                     </div>
                   </div>
@@ -252,7 +248,7 @@ export default function FashionSimple() {
                 { mito: "No me va a quedar la talla", realidad: "Te damos medidas exactas en centímetros + equivalencia por marca. Si no te queda, la cambiamos. 📏" },
                 { mito: "¿Y si tiene defectos?", realidad: "Fotografiamos cada detalle. Si llega algo diferente a lo que mostramos, cambio inmediato. 📸" },
                 { mito: "Es ropa vieja y fea", realidad: "Marcas de USA como Nike, Lululemon, Gymshark. Muchas con etiqueta puesta. Ropa que allá se tira después de usar 2 veces. 🇺🇸" },
-                { mito: "Es muy caro para ser usado", realidad: "Un legging Lululemon cuesta $120 USD nuevo. Aquí te cuesta $55,000 COP. Mismo producto, 80% menos. 💰" },
+                { mito: "Es muy caro para ser usado", realidad: "Un legging Lululemon cuesta $120 USD nuevo. Aquí te cuesta $35,000 COP. Mismo producto, fracción del precio. 💰" },
               ].map((item, i) => (
                 <Mito key={i} mito={item.mito} realidad={item.realidad} index={i} />
               ))}
