@@ -100,7 +100,7 @@ export default function FashionSimple() {
                 whileTap={{ scale: 0.97 }}
               >
                 <div className="absolute inset-0 opacity-50" style={{ background: `linear-gradient(110deg, transparent 20%, rgba(255,255,255,0.6) 50%, transparent 80%)`, backgroundSize: "200% 100%", animation: "shimmer 1.5s linear infinite" }} />
-                <span className="relative z-10">Asegurar mi cupo al Drop</span>
+                <span className="relative z-10">📲 Entra gratis · Mira · Compra cuando quieras</span>
               </motion.button>
             </a>
             <div className="mt-4 flex flex-col items-center justify-center gap-2">
@@ -110,9 +110,8 @@ export default function FashionSimple() {
                   <div className="w-6 h-6 rounded-full border border-black bg-gradient-to-br from-fuchsia-400 to-pink-400" />
                   <div className="w-6 h-6 rounded-full border border-black bg-gradient-to-br from-amber-400 to-orange-400" />
                 </div>
-                <p className="text-xs font-medium">👥 847+ personas en la comunidad</p>
+                <p className="text-xs font-medium">👥 {config.communitySize}+ personas · Gratis · Sin compromiso</p>
               </div>
-              <p className="text-xs text-muted-foreground italic rotate-words">María de Medellín se llevó el vestido azul</p>
             </div>
           </div>
         </Reveal>
@@ -146,8 +145,9 @@ export default function FashionSimple() {
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <p className="text-xs text-accent uppercase tracking-[0.3em]">Preview</p>
+                <p className="text-xs text-accent uppercase tracking-[0.3em]">👀 Solo para mirar</p>
                 <h2 className="text-xl font-bold">Lo que viene este {config.nextDrop.dia}</h2>
+                <p className="text-xs text-muted-foreground mt-1">Para comprar, entra al grupo 👇</p>
               </div>
               <span className="text-xs text-muted-foreground">{config.preview.length} piezas</span>
             </div>
@@ -207,27 +207,33 @@ export default function FashionSimple() {
           </div>
         </Reveal>
 
-        {/* ═══ CÓMO FUNCIONA ═══ */}
+        {/* ═══ CÓMO FUNCIONA (PRINCIPAL) ═══ */}
         <Reveal>
-          <div className="mb-8 overflow-hidden">
-            <h2 className="text-xl font-bold text-center mb-5">¿Cómo funciona?</h2>
-            <div className="flex flex-col gap-4">
+          <div className="mb-8">
+            <h2 className="text-xl font-bold text-center mb-1">¿Cómo funciona?</h2>
+            <p className="text-xs text-muted-foreground text-center mb-5">No compras aquí. Aquí solo ves. La compra es en el grupo.</p>
+            <div className="flex flex-col gap-3">
               {[
-                { icon: "👥", text: "Te unes al grupo (gratis)" },
-                { icon: "📦", text: `Cada ${config.nextDrop.dia} hay drop a las ${config.nextDrop.hora}:00` },
-                { icon: "💬", text: "Preguntas por la que te gustó — primero en llegar" },
-                { icon: "💳", text: "Pagas por Nequi y te la enviamos" },
+                { num: "1", icon: "📲", titulo: "Entras al grupo", desc: "Es gratis. Sin compromiso. Solo miras." },
+                { num: "2", icon: "👀", titulo: "Ves las prendas del drop", desc: `Cada ${config.nextDrop.dia} subimos fotos, medidas y precios reales.` },
+                { num: "3", icon: "💬", titulo: 'Comentas "LO QUIERO"', desc: "Primero en comentar, primero en llevársela." },
+                { num: "4", icon: "💳", titulo: "Pagas cuando quieras", desc: "Nequi, Bancolombia o efectivo. Recoges en Urabá." },
               ].map((step, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-10px" }}
-                  transition={{ delay: i * 0.15, duration: 0.4 }}
-                  className="glass rounded-xl p-5 flex items-center gap-5 w-full bg-gradient-to-r from-cyan-900/30 to-blue-900/30 border border-cyan-500/20"
+                  transition={{ delay: i * 0.12, duration: 0.4 }}
+                  className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-white/5 to-transparent border border-white/10"
                 >
-                  <span className="text-3xl shrink-0">{step.icon}</span>
-                  <p className="text-sm font-medium text-left">{step.text}</p>
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-sm font-bold shrink-0 shadow-lg">
+                    {step.num}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold flex items-center gap-1.5">{step.icon} {step.titulo}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{step.desc}</p>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -263,7 +269,7 @@ export default function FashionSimple() {
                 whileTap={{ scale: 0.97 }}
               >
                 <div className="absolute inset-0 opacity-30" style={{ background: `linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%)`, backgroundSize: "200% 100%", animation: "shimmer 2s linear infinite" }} />
-                <span className="relative z-10">Quiero acceso VIP</span>
+                <span className="relative z-10">📲 Únete al grupo — es gratis</span>
               </motion.button>
             </a>
             <div className="mt-4 flex flex-col items-center justify-center gap-2">
@@ -397,7 +403,7 @@ function FloatingCTA({ whatsappGroup }: { whatsappGroup: string }) {
       <a href={whatsappGroup} target="_blank" rel="noopener noreferrer" className="block">
         <button className="w-full py-3.5 rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-[length:200%_200%] animate-gradient-x text-white font-bold shadow-[0_0_20px_rgba(236,72,153,0.6)] relative overflow-hidden border border-pink-400/50">
           <div className="absolute inset-0 opacity-30" style={{ background: `linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%)`, backgroundSize: "200% 100%", animation: "shimmer 2s linear infinite" }} />
-          <span className="relative z-10">Asegurar mi cupo al Drop</span>
+          <span className="relative z-10">📲 Entra gratis al grupo</span>
         </button>
       </a>
     </motion.div>
