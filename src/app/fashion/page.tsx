@@ -100,7 +100,7 @@ export default function FashionSimple() {
                 whileTap={{ scale: 0.97 }}
               >
                 <div className="absolute inset-0 opacity-50" style={{ background: `linear-gradient(110deg, transparent 20%, rgba(255,255,255,0.6) 50%, transparent 80%)`, backgroundSize: "200% 100%", animation: "shimmer 1.5s linear infinite" }} />
-                <span className="relative z-10">📲 Entra gratis · Mira · Compra cuando quieras</span>
+                <span className="relative z-10">📲 Entra gratis · Mira primero · Las mejores se agotan rápido</span>
               </motion.button>
             </a>
             <div className="mt-4 flex flex-col items-center justify-center gap-2">
