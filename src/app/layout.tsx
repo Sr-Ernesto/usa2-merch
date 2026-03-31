@@ -23,8 +23,9 @@ export default function RootLayout({
               n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
               t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
               document,'script','https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '${process.env.NEXT_PUBLIC_META_PIXEL_ID || "PIXEL_ID"}');
+              fbq('init', '1377931084349727');
               fbq('track', 'PageView');
+              fbq('track', 'ViewContent', {content_name: 'Usa2 Merch Bridge Page'});
             `,
           }}
         />
@@ -48,6 +49,10 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-black text-white antialiased">
+        {/* Meta Pixel Noscript */}
+        <noscript>
+          <img height="1" width="1" style={{ display: "none" }} src="https://www.facebook.com/tr?id=1377931084349727&ev=PageView&noscript=1" alt="" />
+        </noscript>
         {children}
       </body>
     </html>

@@ -44,6 +44,18 @@ export default function FashionSimple() {
 
   const dropDate = new Date(`${config.nextDrop.fecha}T${String(config.nextDrop.hora).padStart(2, "0")}:00:00-05:00`);
 
+  // Track WhatsApp CTA clicks
+  const trackCTAClick = (placement: string) => {
+    // Meta Pixel — Lead event (click to WhatsApp)
+    (window as any).fbq?.('track', 'Lead', { content_name: 'WhatsApp Group Join', placement });
+    // Meta Conversions API — server-side
+    fetch('/api/track', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ event: 'Lead', placement, url: window.location.href }),
+    }).catch(() => {});
+  };
+
   const { scrollY } = useScroll();
   const bgY = useTransform(scrollY, [0, 1000], [0, 150]);
 
@@ -106,7 +118,7 @@ export default function FashionSimple() {
         {/* ═══ 5. CTA PRINCIPAL ═══ */}
         <Reveal>
           <div className="text-center mb-6">
-            <a href={config.whatsappGroup} target="_blank" rel="noopener noreferrer">
+            <a href={config.whatsappGroup} target="_blank" rel="noopener noreferrer" onClick={() => trackCTAClick("primary")}>
               <motion.button
                 className="w-full py-4 rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-[length:200%_200%] animate-gradient-x text-white font-bold text-lg relative overflow-hidden shadow-[0_0_20px_rgba(236,72,153,0.6)] border border-pink-400/50 before:absolute before:inset-0 before:p-[2px] before:rounded-xl before:bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] before:animate-[spin_3s_linear_infinite]"
                 animate={{ scale: [1, 1.02, 1] }}
@@ -255,7 +267,7 @@ export default function FashionSimple() {
         {/* ═══ 11. CTA FINAL ═══ */}
         <Reveal>
           <div className="text-center mb-8">
-            <a href={config.whatsappGroup} target="_blank" rel="noopener noreferrer">
+            <a href={config.whatsappGroup} target="_blank" rel="noopener noreferrer" onClick={() => trackCTAClick("final")}>
               <motion.button
                 className="w-full py-4 rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-[length:200%_200%] animate-gradient-x text-white font-bold text-lg relative overflow-hidden shadow-[0_0_20px_rgba(236,72,153,0.6)] border border-pink-400/50 before:absolute before:inset-0 before:p-[2px] before:rounded-xl before:bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] before:animate-[spin_3s_linear_infinite]"
                 animate={{ scale: [1, 1.02, 1] }}
@@ -385,7 +397,7 @@ function FloatingCTA({ whatsappGroup, dropDia }: { whatsappGroup: string, dropDi
   if (!vis) return null;
   return (
     <motion.div className="fixed bottom-4 left-4 right-4 z-50 max-w-lg mx-auto" initial={{ y: 80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 80, opacity: 0 }}>
-      <a href={whatsappGroup} target="_blank" rel="noopener noreferrer" className="block">
+      <a href={whatsappGroup} target="_blank" rel="noopener noreferrer" className="block" onClick={() => (window as any).fbq?.('track', 'Lead', { content_name: 'WhatsApp Group Join', placement: 'floating' })}>
         <button className="w-full py-3.5 rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-[length:200%_200%] animate-gradient-x text-white font-bold shadow-[0_0_20px_rgba(236,72,153,0.6)] relative overflow-hidden border border-pink-400/50">
           <div className="absolute inset-0 opacity-30" style={{ background: `linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%)`, backgroundSize: "200% 100%", animation: "shimmer 2s linear infinite" }} />
           <span className="relative z-10">📲 Entra gratis — el {dropDia} hay drop</span>
