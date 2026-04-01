@@ -4,28 +4,30 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { useState, useEffect } from "react";
 
 /**
- * 👗 Usa2 Merch — Bridge Page v2
+ * 👗 Usa2 Merch — Bridge Page v3
  *
  * ÚNICO objetivo: captar gente para el grupo de WhatsApp.
  * La venta ocurre EN EL GRUPO durante llegadas jueves y domingo.
  * 
- * v2: Reescritura completa con auditoría Copy-Beast Latam + Marketero.
- * Gatillos: Desconfianza, FOMO, Identidad/Pertenencia.
+ * v3: Copy validada por Sr. Gómez para Urabá.
+ * - Marcas que la gente conoce (Nike, Adidas, Reebok)
+ * - Sin "drop", sin "gratis" confuso, sin "centro"
+ * - Fotos arriba, CTA claro: "únete a nuestro grupo de WhatsApp"
  */
 
 export default function FashionSimple() {
   const [config, setConfig] = useState({
     brandName: "Usa2 Merch",
-    tagline: "Ropa de marca USA · Usada como nueva · Urabá, Antioquia",
+    tagline: "Prendas de segunda en excelente estado desde USA",
     whatsappGroup: "https://chat.whatsapp.com/FQ8LpYS8vGaLeRibdwlTUX?mode=gi_t",
     ciudadRecogida: "Urabá, Antioquia",
     nextDrop: { fecha: "2026-04-02", dia: "jueves", hora: 16, piezas: 25 },
     pastDrop: { piezas: 6, agotadoEn: "2 horas" },
     communitySize: 847,
     preview: [
-      { imagen: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=800&fit=crop", marca: "Nike", nombre: "Leggings Dri-FIT", precio: 35000, color: "Negro" },
-      { imagen: "https://images.unsplash.com/photo-1549439602-43ebca2327af?w=600&h=800&fit=crop", marca: "Adidas", nombre: "Top deportivo", precio: 35000, color: "Rosa" },
-      { imagen: "https://images.unsplash.com/photo-1550995694-3f5f4a7e1bd2?w=600&h=800&fit=crop", marca: "Gymshark", nombre: "Sports bra Flex", precio: 35000, color: "Azul marino" },
+      { imagen: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&h=800&fit=crop", marca: "Nike", nombre: "Leggings Dri-FIT", precio: 20000, color: "Negro" },
+      { imagen: "https://images.unsplash.com/photo-1549439602-43ebca2327af?w=600&h=800&fit=crop", marca: "Adidas", nombre: "Top deportivo", precio: 25000, color: "Rosa" },
+      { imagen: "https://images.unsplash.com/photo-1550995694-3f5f4a7e1bd2?w=600&h=800&fit=crop", marca: "Reebok", nombre: "Sports bra", precio: 20000, color: "Azul" },
     ],
   });
 
@@ -44,11 +46,8 @@ export default function FashionSimple() {
 
   const dropDate = new Date(`${config.nextDrop.fecha}T${String(config.nextDrop.hora).padStart(2, "0")}:00:00-05:00`);
 
-  // Track WhatsApp CTA clicks
   const trackCTAClick = (placement: string) => {
-    // Meta Pixel — Lead event (click to WhatsApp)
     (window as any).fbq?.('track', 'Lead', { content_name: 'WhatsApp Group Join', placement });
-    // Meta Conversions API — server-side
     fetch('/api/track', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -74,35 +73,80 @@ export default function FashionSimple() {
         }}
       >
 
-        {/* ═══ 1. HERO — Brand + Subheadline ═══ */}
+        {/* ═══ 1. HERO — Brand + Qué es ═══ */}
         <Reveal>
           <div className="text-center mb-6">
             <h1 className="text-3xl font-bold mb-1">{config.brandName}</h1>
             <p className="text-muted-foreground text-sm">{config.tagline}</p>
-            <p className="text-xs text-muted-foreground mt-2">Llega lavadita y lista. La ves antes de decidir.</p>
+            <p className="text-xs text-muted-foreground mt-1">Marcas Nike, Adidas, Reebok · Prendas desde $20,000</p>
           </div>
         </Reveal>
 
-        {/* ═══ 2. PROBLEMA + AGITACIÓN ═══ */}
+        {/* ═══ 2. FOTOS — Arriba, visibles de una ═══ */}
         <Reveal>
-          <div className="rounded-xl p-4 mb-6 bg-gradient-to-r from-red-950/40 to-orange-950/30 border border-red-500/20 text-center">
-            <p className="text-sm">
-              ¿$200,000 por unas leggings de marca en el centro? Honestamente, no tiene sentido cuando las conseguís usadas como nuevas a <strong>$35,000 COP</strong>. Mismas marcas. Mismo corte.
-            </p>
+          <div className="mb-6">
+            <div className="grid grid-cols-3 gap-2">
+              {config.preview.slice(0, 3).map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ delay: 0.2 + i * 0.15, duration: 0.5, type: "spring" }}
+                >
+                  <div className="relative aspect-[3/4] rounded-xl overflow-hidden">
+                    <motion.img
+                      src={item.imagen}
+                      alt={item.nombre}
+                      className="w-full h-full object-cover"
+                      loading="eager"
+                      whileHover={{ scale: 1.06 }}
+                      transition={{ duration: 0.5 }}
+                    />
+                    <div className="absolute top-1.5 left-1.5">
+                      <span className="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-white/90 text-black shadow-sm">
+                        {item.marca || "Importada"}
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            <p className="text-xs text-muted-foreground text-center mt-2">Hay muchas más en el grupo</p>
           </div>
         </Reveal>
 
-        {/* ═══ 3. FOMO + SOCIAL PROOF ═══ */}
+        {/* ═══ 3. CTA PRINCIPAL — Únete al grupo de WhatsApp ═══ */}
+        <Reveal>
+          <div className="text-center mb-6">
+            <a href={config.whatsappGroup} target="_blank" rel="noopener noreferrer" onClick={() => trackCTAClick("primary")}>
+              <motion.button
+                className="w-full py-4 rounded-xl bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 bg-[length:200%_200%] animate-gradient-x text-white font-bold text-lg relative overflow-hidden shadow-[0_0_20px_rgba(16,185,129,0.6)] border border-green-400/50"
+                animate={{ scale: [1, 1.02, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                whileHover={{ scale: 1.04, boxShadow: "0 0 30px rgba(16,185,129,0.8)" }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <div className="absolute inset-0 opacity-50" style={{ background: `linear-gradient(110deg, transparent 20%, rgba(255,255,255,0.6) 50%, transparent 80%)`, backgroundSize: "200% 100%", animation: "shimmer 1.5s linear infinite" }} />
+                <span className="relative z-10">📲 Únete a nuestro grupo de WhatsApp</span>
+              </motion.button>
+            </a>
+            <div className="mt-3 flex items-center justify-center gap-2">
+              <p className="text-xs text-muted-foreground">Si no te quieres perder nuestra próxima llegada, entra al grupo</p>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* ═══ 4. FOMO ═══ */}
         <Reveal>
           <div className="glass rounded-2xl p-5 text-center mb-6">
             <p className="text-sm">
-              🔥 <strong>{config.communitySize} chicas</strong> ya están en el grupo. Última llegada: <strong>{config.pastDrop.piezas} piezas</strong> se agotaron en <strong className="text-accent">{config.pastDrop.agotadoEn}</strong>.
+              🔥 <strong>{config.communitySize} personas</strong> ya están en el grupo.
             </p>
-            <p className="text-xs text-muted-foreground mt-2">Si no estás adentro, te enteras cuando ya se fueron.</p>
+            <p className="text-xs text-muted-foreground mt-2">Las mejores prendas se van primero.</p>
           </div>
         </Reveal>
 
-        {/* ═══ 4. COUNTDOWN ═══ */}
+        {/* ═══ 5. COUNTDOWN ═══ */}
         <Reveal>
           <div className="glass-strong rounded-2xl p-6 text-center mb-6 relative overflow-hidden ring-1 ring-primary/50 shadow-[0_0_15px_rgba(var(--primary),0.3)] bg-gradient-to-br from-indigo-900 via-purple-900 to-fuchsia-900">
             <p className="text-xs text-cyan-300 uppercase tracking-[0.3em] mb-1 animate-pulse">🔥 Próxima llegada</p>
@@ -115,41 +159,15 @@ export default function FashionSimple() {
           </div>
         </Reveal>
 
-        {/* ═══ 5. CTA PRINCIPAL ═══ */}
-        <Reveal>
-          <div className="text-center mb-6">
-            <a href={config.whatsappGroup} target="_blank" rel="noopener noreferrer" onClick={() => trackCTAClick("primary")}>
-              <motion.button
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-[length:200%_200%] animate-gradient-x text-white font-bold text-lg relative overflow-hidden shadow-[0_0_20px_rgba(236,72,153,0.6)] border border-pink-400/50 before:absolute before:inset-0 before:p-[2px] before:rounded-xl before:bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] before:animate-[spin_3s_linear_infinite]"
-                animate={{ scale: [1, 1.02, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                whileHover={{ scale: 1.04, boxShadow: "0 0 30px rgba(236,72,153,0.8)" }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <div className="absolute inset-0 opacity-50" style={{ background: `linear-gradient(110deg, transparent 20%, rgba(255,255,255,0.6) 50%, transparent 80%)`, backgroundSize: "200% 100%", animation: "shimmer 1.5s linear infinite" }} />
-                <span className="relative z-10">📲 Entra al grupo · Ve las fotos antes que todas · Gratis</span>
-              </motion.button>
-            </a>
-            <div className="mt-3 flex items-center justify-center gap-2">
-              <div className="flex -space-x-2">
-                <div className="w-6 h-6 rounded-full border border-black bg-gradient-to-br from-indigo-400 to-cyan-400" />
-                <div className="w-6 h-6 rounded-full border border-black bg-gradient-to-br from-fuchsia-400 to-pink-400" />
-                <div className="w-6 h-6 rounded-full border border-black bg-gradient-to-br from-amber-400 to-orange-400" />
-              </div>
-              <p className="text-xs font-medium">{config.communitySize}+ personas · Gratis · Sales cuando quieras</p>
-            </div>
-          </div>
-        </Reveal>
-
-        {/* ═══ 6. MARQUEE — Solo frases de deseo ═══ */}
+        {/* ═══ 6. MARQUEE ═══ */}
         <Reveal>
           <div className="overflow-hidden py-3 mb-8 border-y border-border/30 bg-muted/20">
             <div className="flex animate-marquee whitespace-nowrap uppercase tracking-[0.2em] font-medium font-sans">
               {[
-                "Nike desde $35,000", "Adidas desde $35,000", "Puma", "Gymshark",
-                "Primero en comentar, primero en llevar", `Llegadas ${config.nextDrop.dia}s y domingos`,
-                "Nike desde $35,000", "Adidas desde $35,000", "Puma", "Gymshark",
-                "Primero en comentar, primero en llevar", `Llegadas ${config.nextDrop.dia}s y domingos`,
+                "Nike", "Adidas", "Reebok", "Puma", "Gymshark",
+                "Prendas desde $20,000", "Primero en comentar, primero en llevar",
+                "Nike", "Adidas", "Reebok", "Puma", "Gymshark",
+                "Prendas desde $20,000", "Primero en comentar, primero en llevar",
               ].map((item, i) => (
                 <motion.span 
                   key={i} 
@@ -168,14 +186,13 @@ export default function FashionSimple() {
         {/* ═══ 7. CÓMO FUNCIONA ═══ */}
         <Reveal>
           <div className="mb-8">
-            <h2 className="text-xl font-bold text-center mb-1">Así de fácil</h2>
-            <p className="text-xs text-muted-foreground text-center mb-5">No compras aquí. Solo ves. La compra es en el grupo.</p>
+            <h2 className="text-xl font-bold text-center mb-1">Así funciona</h2>
             <div className="flex flex-col gap-3">
               {[
-                { num: "1", icon: "📲", titulo: "Entras al grupo", desc: "Gratis. Si no te gusta, te sales cuando quieras." },
-                { num: "2", icon: "👀", titulo: "Ves las fotos", desc: `Prendas de USA con fotos de cada detalle. La ves bien antes de decidir.` },
-                { num: "3", icon: "💬", titulo: 'Comentas "LO QUIERO"', desc: "La primera en comentar se la lleva. Así de simple." },
-                { num: "4", icon: "💳", titulo: "Pagas fácil", desc: "Nequi, Bancolombia o efectivo. Recoges en Urabá." },
+                { num: "1", icon: "📲", titulo: "Te unes al grupo de WhatsApp", desc: "Es un grupo donde subimos las fotos de las prendas." },
+                { num: "2", icon: "👀", titulo: "Ves las fotos", desc: "Cada prenda con fotos reales. La ves bien antes de decidir." },
+                { num: "3", icon: "💬", titulo: 'Comentas "LO QUIERO"', desc: "La primera en comentar se la lleva." },
+                { num: "4", icon: "💳", titulo: "Pagas y recoges", desc: "Nequi, Bancolombia o efectivo. Recoges en Urabá." },
               ].map((step, i) => (
                 <motion.div
                   key={i}
@@ -185,7 +202,7 @@ export default function FashionSimple() {
                   transition={{ delay: i * 0.12, duration: 0.4 }}
                   className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-white/5 to-transparent border border-white/10"
                 >
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-sm font-bold shrink-0 shadow-lg">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center text-sm font-bold shrink-0 shadow-lg">
                     {step.num}
                   </div>
                   <div className="min-w-0">
@@ -195,68 +212,28 @@ export default function FashionSimple() {
                 </motion.div>
               ))}
             </div>
-            <p className="text-xs text-muted-foreground text-center mt-3 italic">¿No te gustó nada? No pasa nada. Seguís en el grupo para la próxima llegada.</p>
           </div>
         </Reveal>
 
-        {/* ═══ 8. CATÁLOGO PREVIEW (3 prendas, sin precio exacto) ═══ */}
-        <Reveal>
-          <div className="mb-8">
-            <div className="mb-4">
-              <p className="text-xs text-accent uppercase tracking-[0.3em]">👀 Un vistazo</p>
-              <h2 className="text-xl font-bold">Lo que llega este {config.nextDrop.dia}</h2>
-              <p className="text-xs text-muted-foreground mt-1">Las del grupo ya lo están viendo. ¿Y tú?</p>
-            </div>
-            <div className="grid grid-cols-3 gap-2">
-              {config.preview.slice(0, 3).map((item, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, scale: 0.8, y: 30 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-20px" }}
-                  transition={{ delay: i * 0.15, duration: 0.5, type: "spring" }}
-                >
-                  <div className="relative aspect-[3/4] rounded-xl overflow-hidden mb-1">
-                    <motion.img
-                      src={item.imagen}
-                      alt={item.nombre}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                      whileHover={{ scale: 1.06 }}
-                      transition={{ duration: 0.5 }}
-                    />
-                    <div className="absolute top-1.5 left-1.5">
-                      <span className="px-1.5 py-0.5 rounded-full text-[9px] font-bold bg-white/90 text-black shadow-sm">
-                        {item.marca || "Importada"}
-                      </span>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-            <p className="text-xs text-muted-foreground text-center mt-3">Hay 15+ más en el grupo. Solo se ven ahí.</p>
-          </div>
-        </Reveal>
-
-        {/* ═══ 9. BLINDAJE ═══ */}
+        {/* ═══ 8. BLINDAJE ═══ */}
         <Reveal>
           <div className="rounded-xl p-4 mb-8 bg-gradient-to-r from-emerald-950/40 to-teal-950/30 border border-emerald-500/20 text-center">
             <p className="text-sm font-semibold mb-1">👀 Todo se ve antes de comprar</p>
             <p className="text-xs text-muted-foreground">
-              Subimos fotos de cada prenda como está. Si cuando la ves en persona no es lo que esperabas, no te la llevás. Así de simple. Acá no hay compras a ciegas.
+              Subimos fotos de cada prenda como está. Si cuando la ves en persona no es lo que esperabas, no te la llevás. Acá no hay compras a ciegas.
             </p>
           </div>
         </Reveal>
 
-        {/* ═══ 10. FAQ — 3 Mitos ═══ */}
+        {/* ═══ 9. FAQ ═══ */}
         <Reveal>
           <div className="mb-8">
             <h2 className="text-xl font-bold text-center mb-5">Dudas comunes</h2>
             <div className="flex flex-col gap-3">
               {[
                 { mito: "¿Y si huele raro?", realidad: "Cada prenda pasa por lavado profesional antes de subir fotos. Llega limpia y lista." },
-                { mito: "$35,000 por algo usado?", realidad: "Esas mismas marcas nuevas cuestan $200,000+ en el centro. Acá las conseguís a $35,000. Menos que un almuerzo para dos." },
-                { mito: "¿Y si no me gusta en persona?", realidad: "Subimos fotos reales de cada prenda. Si cuando la ves no es lo que esperabas, no te la llevás. Punto." },
+                { mito: "¿$20,000 por algo usado?", realidad: "Son marcas como Nike y Adidas. Nuevas cuestan 5 veces más. Acá las conseguís en excelente estado a una fracción del precio." },
+                { mito: "¿Y si no me gusta en persona?", realidad: "Subimos fotos reales de cada prenda. Si no es lo que esperabas, no te la llevás. Punto." },
               ].map((item, i) => (
                 <Mito key={i} mito={item.mito} realidad={item.realidad} index={i} />
               ))}
@@ -264,31 +241,31 @@ export default function FashionSimple() {
           </div>
         </Reveal>
 
-        {/* ═══ 11. CTA FINAL ═══ */}
+        {/* ═══ 10. CTA FINAL ═══ */}
         <Reveal>
           <div className="text-center mb-8">
             <a href={config.whatsappGroup} target="_blank" rel="noopener noreferrer" onClick={() => trackCTAClick("final")}>
               <motion.button
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-[length:200%_200%] animate-gradient-x text-white font-bold text-lg relative overflow-hidden shadow-[0_0_20px_rgba(236,72,153,0.6)] border border-pink-400/50 before:absolute before:inset-0 before:p-[2px] before:rounded-xl before:bg-[conic-gradient(from_0deg,transparent_0_340deg,white_360deg)] before:animate-[spin_3s_linear_infinite]"
+                className="w-full py-4 rounded-xl bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 bg-[length:200%_200%] animate-gradient-x text-white font-bold text-lg relative overflow-hidden shadow-[0_0_20px_rgba(16,185,129,0.6)] border border-green-400/50"
                 animate={{ scale: [1, 1.02, 1] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                whileHover={{ scale: 1.04, boxShadow: "0 0 30px rgba(236,72,153,0.8)" }}
+                whileHover={{ scale: 1.04, boxShadow: "0 0 30px rgba(16,185,129,0.8)" }}
                 whileTap={{ scale: 0.97 }}
               >
                 <div className="absolute inset-0 opacity-30" style={{ background: `linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%)`, backgroundSize: "200% 100%", animation: "shimmer 2s linear infinite" }} />
-                <span className="relative z-10">📲 La próxima llegada es este {config.nextDrop.dia} — entra y mira primero</span>
+                <span className="relative z-10">📲 Únete a nuestro grupo de WhatsApp</span>
               </motion.button>
             </a>
-            <div className="mt-3 flex items-center justify-center gap-2">
-              <p className="text-xs text-muted-foreground">{config.communitySize} personas ya están adentro · Gratis · Sin letra pequeña</p>
+            <div className="mt-3">
+              <p className="text-xs text-muted-foreground">{config.communitySize} personas ya están en el grupo</p>
             </div>
           </div>
         </Reveal>
 
-        {/* ═══ 12. FOOTER ═══ */}
+        {/* ═══ FOOTER ═══ */}
         <footer className="text-center text-xs text-muted-foreground space-y-1 pb-8">
-          <p>📍 Recogida gratis {config.ciudadRecogida} · 🚚 Enviamos a Colombia</p>
-          <p>💳 Nequi · Bancolombia · Efecty · PSE</p>
+          <p>📍 Recogida {config.ciudadRecogida} · 🚚 Enviamos a Colombia</p>
+          <p>💳 Nequi · Bancolombia · Efectivo</p>
         </footer>
       </motion.div>
 
@@ -398,9 +375,9 @@ function FloatingCTA({ whatsappGroup, dropDia }: { whatsappGroup: string, dropDi
   return (
     <motion.div className="fixed bottom-4 left-4 right-4 z-50 max-w-lg mx-auto" initial={{ y: 80, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 80, opacity: 0 }}>
       <a href={whatsappGroup} target="_blank" rel="noopener noreferrer" className="block" onClick={() => (window as any).fbq?.('track', 'Lead', { content_name: 'WhatsApp Group Join', placement: 'floating' })}>
-        <button className="w-full py-3.5 rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-[length:200%_200%] animate-gradient-x text-white font-bold shadow-[0_0_20px_rgba(236,72,153,0.6)] relative overflow-hidden border border-pink-400/50">
+        <button className="w-full py-3.5 rounded-xl bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 bg-[length:200%_200%] animate-gradient-x text-white font-bold shadow-[0_0_20px_rgba(16,185,129,0.6)] relative overflow-hidden border border-green-400/50">
           <div className="absolute inset-0 opacity-30" style={{ background: `linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%)`, backgroundSize: "200% 100%", animation: "shimmer 2s linear infinite" }} />
-          <span className="relative z-10">📲 Entra gratis — el {dropDia} hay llegada nueva</span>
+          <span className="relative z-10">📲 Únete al grupo de WhatsApp</span>
         </button>
       </a>
     </motion.div>
