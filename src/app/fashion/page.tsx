@@ -78,7 +78,15 @@ export default function FashionSimple() {
           <div className="text-center mb-6">
             <h1 className="text-3xl font-bold mb-1">{config.brandName}</h1>
             <p className="text-muted-foreground text-sm">{config.tagline}</p>
-            <p className="text-xs text-muted-foreground mt-1">Marcas Nike, Adidas, Reebok · Prendas desde $20,000</p>
+            <p className="text-xs text-muted-foreground mt-2 flex flex-col sm:flex-row items-center justify-center gap-1.5">
+              <span>Marcas Nike, Adidas, Reebok ·</span>
+              <span className="relative inline-block font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-500 drop-shadow-[0_0_8px_rgba(251,191,36,0.6)]">
+                prendas desde $20,000
+              </span>
+              <span className="relative inline-block font-black text-white px-2 py-0.5 rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 shadow-[0_0_12px_rgba(168,85,247,0.5)] animate-[pulse_2s_ease-in-out_infinite] text-[10px] uppercase tracking-wider ml-1 ring-1 ring-white/20">
+                100% originales
+              </span>
+            </p>
           </div>
         </Reveal>
 
@@ -194,7 +202,7 @@ export default function FashionSimple() {
                 { num: "1", icon: "📲", titulo: "Te unes al grupo de WhatsApp", desc: "Es un grupo donde subimos las fotos de las prendas." },
                 { num: "2", icon: "👀", titulo: "Ves las fotos", desc: "Cada prenda con fotos reales. La ves bien antes de decidir." },
                 { num: "3", icon: "💬", titulo: 'Comentas "LO QUIERO"', desc: "La primera en comentar se la lleva." },
-                { num: "4", icon: "💳", titulo: "Pagas y recoges", desc: "Nequi, Bancolombia o efectivo. Recoges en Urabá." },
+                { num: "4", icon: "💳", titulo: "Pagas y recoges", desc: <>Nequi, Bancolombia o efectivo. Recoges en <span className="relative inline-block font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 animate-pulse drop-shadow-[0_0_8px_rgba(16,185,129,0.8)] px-1">Urabá<span className="absolute -inset-1 bg-gradient-to-r from-emerald-500/30 to-cyan-500/30 blur-md rounded-lg -z-10"></span></span>.</> },
               ].map((step, i) => (
                 <motion.div
                   key={i}
