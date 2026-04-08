@@ -21,7 +21,7 @@ export default function FashionSimple() {
     tagline: "Prendas de segunda en excelente estado desde USA",
     whatsappGroup: "https://chat.whatsapp.com/FQ8LpYS8vGaLeRibdwlTUX?mode=gi_t",
     ciudadRecogida: "Urabá, Antioquia",
-    nextDrop: { fecha: "2026-04-02", dia: "jueves", hora: 16, piezas: 25 },
+    nextDrop: { fecha: "2026-04-09", dia: "jueves", hora: 16, piezas: 25 },
     pastDrop: { piezas: 6, agotadoEn: "2 horas" },
     communitySize: 847,
     preview: [
@@ -151,9 +151,11 @@ export default function FashionSimple() {
           <div className="glass-strong rounded-2xl p-6 text-center mb-6 relative overflow-hidden ring-1 ring-primary/50 shadow-[0_0_15px_rgba(var(--primary),0.3)] bg-gradient-to-br from-indigo-900 via-purple-900 to-fuchsia-900">
             <p className="text-xs text-cyan-300 uppercase tracking-[0.3em] mb-1 animate-pulse">🔥 Próxima llegada</p>
             <p className="text-lg font-bold capitalize">
-              {config.nextDrop.dia} {config.nextDrop.fecha.split("-").reverse().slice(0, 2).join("/")}
+              {config.nextDrop.dia} {new Date(`${config.nextDrop.fecha}T00:00:00`).toLocaleDateString('es-ES', { day: 'numeric', month: 'long' })}
             </p>
-            <p className="text-sm text-muted-foreground mb-4">a las {config.nextDrop.hora}:00</p>
+            <p className="text-sm text-muted-foreground mb-4">
+              a las {config.nextDrop.hora % 12 || 12}:00 {config.nextDrop.hora >= 12 ? 'pm' : 'am'}
+            </p>
             <Countdown target={dropDate} />
             <p className="text-xs text-muted-foreground mt-3">{config.nextDrop.piezas} piezas · Primero en comentar, primero en llevar</p>
           </div>
@@ -264,7 +266,7 @@ export default function FashionSimple() {
 
         {/* ═══ FOOTER ═══ */}
         <footer className="text-center text-xs text-muted-foreground space-y-1 pb-8">
-          <p>📍 Recogida {config.ciudadRecogida} · 🚚 Enviamos a Colombia</p>
+          <p>📍 Recogida <span className="relative inline-block font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 animate-pulse drop-shadow-[0_0_8px_rgba(16,185,129,0.8)] px-1">{config.ciudadRecogida}<span className="absolute -inset-1 bg-gradient-to-r from-emerald-500/30 to-cyan-500/30 blur-md rounded-lg -z-10"></span></span> · 🚚 Enviamos a Colombia</p>
           <p>💳 Nequi · Bancolombia · Efectivo</p>
         </footer>
       </motion.div>
